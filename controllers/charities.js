@@ -1,4 +1,5 @@
 const Charity = require('../models/charity');
+const Volunteer = require('../models/volunteer');
 
 module.exports = (app) => {
 
@@ -27,7 +28,17 @@ module.exports = (app) => {
     // show
     app.get('/charities/:id', (req, res) => {
         Charity.findById(req.params.id).then(charity => {
-            res.render('charities-show', {charity: charity});
+            Volunteer.find({charityId: req.params.id}).then(volunteers => {
+                console.log(`Volunteers: ${volunteers}`);
+                res.render('charities-show', {charity: charity, volunteers: volunteers});
+            }).catch(err => {
+                console.log(err);
+            });
         });
+    });
+
+    // edit form
+    app.get('/charities/:id/edit', (req, res) => {
+        res.render('charities-edit');
     });
 };
