@@ -22,9 +22,11 @@ module.exports = (app) => {
     });
 
     app.put('/charities/:charityId/volunteers/:id/edit', (req, res) => {
-        Volunteer.findByIdAndUpdate(req.params.id, req.params.body).then(review => {
+        Volunteer.findByIdAndUpdate(req.params.id, req.body).then(volunteer => {
             res.redirect(`/charities/${volunteer.charityId}`)
-        })
+        }).catch(err => {
+            console.log(`There was a problem updating: ${err.message}`);
+        });
     });
 
 };
