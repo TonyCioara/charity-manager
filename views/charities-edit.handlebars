@@ -1,8 +1,8 @@
 <fieldset>
-    <legend>New Charity</legend>
+    <legend>Edit Charity</legend>
     <div class="row">
         <div class="col-sm-12">
-            <form method="POST" action="/charities/new">
+            <form method="POST" action="/charities/{{charity._id}}/edit?_method=put">
 
                 {{> charities-form }}
 

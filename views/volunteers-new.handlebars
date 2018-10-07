@@ -3,7 +3,15 @@
         <form method="POST" action="/charities/{{charityId}}/volunteers/new">
             <fieldset>
                 <legend>New Volunteer</legend>
-                {{> volunteers-form }}
+                
+                <div class="form-group">
+                        <label for="volunteer-name">Name</label>
+                        <input type="text" class="form-control" name="name" id="volunteer-name">
+                </div>
+                <div class="form-group">
+                    <label for="volunteer-hours">Volunteer Hours: </label>
+                    <input class="input-group-field" type="number" name="volunteerHours" value="0">
+                </div>
             </fieldset>
             <input type="hidden" name="charityId" value={{charityId}}>
 

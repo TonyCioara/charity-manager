@@ -18,12 +18,16 @@ module.exports = (app) => {
 
     // edit form
     app.get('/charities/:charityId/volunteers/:id/edit', (req, res) => {
-        res.render('volunteers-edit', {charityId: req.params.charityId, volunteerId: req.params.id});
+        Volunteer.findById(req.params.id, (err, volunteer) => {
+            res.render('volunteers-edit', {volunteer: volunteer});
+        });
     });
 
+    // update
     app.put('/charities/:charityId/volunteers/:id/edit', (req, res) => {
         Volunteer.findByIdAndUpdate(req.params.id, req.body).then(volunteer => {
-            res.redirect(`/charities/${volunteer.charityId}`)
+            console.log(`volunteer: ${volunteer}`);
+            res.redirect(`/charities/${volunteer.charityId}`);
         }).catch(err => {
             console.log(`There was a problem updating: ${err.message}`);
         });
