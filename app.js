@@ -7,7 +7,7 @@ var exphbs = require('express-handlebars');
 const app = express();
 
 const port = process.env.PORT || 3000;
-const dbURI = process.env.DBURI || 'mongodb://localhost/charity-manager';
+const dbURI = process.env.MONGODB_URI || 'mongodb://localhost/charity-manager';
 
 mongoose.connect(dbURI);
 
